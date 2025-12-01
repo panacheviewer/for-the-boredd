@@ -483,11 +483,12 @@ html, body {
 
 #rowManage {
     display: flex;
-    position: absolute;
     height: 100px;
     justify-content: center;
+    bottom: 0;
     align-items: center;
     justify-self: center;
+    width: fit-content;
     gap: 400px;
     z-index: 0;
     pointer-events: none;
@@ -520,7 +521,7 @@ html, body {
     justify-content: center;
     justify-self: center;
     z-index: 100;
-    margin-top: 20px;
+    margin-top: -80px;
     width: 200px;
     height: 75px;
     border-radius: 10px;
@@ -869,6 +870,7 @@ html, body {
 
 #historyScreen {
     visibility: hidden;
+    position: fixed;
 }
 
 #allInSection {
@@ -1063,6 +1065,3 @@ html, body {
     color: #FFFFFF;
 }
 }
-
-
-
