@@ -891,12 +891,24 @@ html, body {
 
 #allInBody  {
     display: flex;
-
     margin: 0 auto;
     color: white;
     align-self: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 40px;
+}
+
+.coverText {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 999999999;
+    opacity: 0;
+    visibility: hidden;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 @keyframes clearer {
@@ -1028,4 +1040,25 @@ html, body {
         opacity: 0;
         visibility: hidden;
     }
+}
+
+@media (max-width: 425px) {
+    #mainCover {
+        opacity: 1;
+        visibility: visible;
+        background-color: #000000;
+    }
+
+    .coverText {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 999999999;
+    opacity: 1;
+    visibility: visible;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: #FFFFFF;
+}
 }
