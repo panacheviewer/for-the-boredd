@@ -739,7 +739,9 @@ html, body {
     display: flex;
     position: fixed;
     width: 500px;
-    justify-self: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     height: 100px;
     flex-direction: column;
     text-align: center;
