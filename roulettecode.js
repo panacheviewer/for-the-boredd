@@ -202,7 +202,7 @@ function rollAnimation() {
 
 setTimeout(()=> {
     rollBoxClone.style.visibility = 'visible';
-    rollBoxClone.style.animation = 'raiseSlight 0.5s ease-out forwards';
+    rollBoxClone.style.animation = 'raiseSlight 1s  ease-out forwards';
 }, 1000)
     let intervalRoller = setInterval(() => {
         currentRole = Math.floor(Math.random()*38);
@@ -339,7 +339,7 @@ setTimeout(()=> {
 
         rollSetterClone.style.animation = 'none';
         void rollSetterClone.offsetWidth;
-        rollSetterClone.style.animation = 'slightPull 0.2s ease-out forward';
+        rollSetterClone.style.animation = 'slightPull 0.2s ease-out forwards';
 
         clickFunct();
 
@@ -354,7 +354,7 @@ setTimeout(()=> {
         rollSetterClone.textContent = finalResult;
         exitOut = true;
         closePromptClone.style.visibility = 'visible';
-        rollBoxClone.style.scale = 1.2;
+        rollBoxClone.style.transform = 'translateX(-50%) scale(1.1)';
         rollBoxClone.style.boxShadow = '0 0 100px 100px rgba(243, 198, 32, 0.5)';
 
         const clickX = (click) => {
@@ -588,6 +588,12 @@ betButton.onclick = function() {
         allInSection.style.animation = 'allCover2 1s forwards';
         addReady = true;
     }
+        let placedChip = document.querySelectorAll('.placedChip');
+
+        placedChip.forEach(chip =>{
+        chip.remove();
+        });
+
         errorCode = 0;
         betAmount = 0; 
         payMultiple = 1;
@@ -598,6 +604,12 @@ betButton.onclick = function() {
 }
 
 clearButton.onclick = function() {
+    let placedChip = document.querySelectorAll('.placedChip');
+
+    placedChip.forEach(chip =>{
+        chip.remove();
+    });
+
     betAmount = 0;
     statUpdate()
     if (addReady === false) {
@@ -793,4 +805,4 @@ cacheCheckbox.addEventListener('change', () => {
         localStorage.removeItem('wins');
         localStorage.removeItem('losses');
     }
-})
+});
