@@ -45,11 +45,11 @@ html, body {
 }
 
 #rollBox, .rollBox2 {
+    visibility: hidden;
     transition: 1s ease-out;
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-self: center;
     justify-content: center;
     top: 75px;
     text-align: center;
@@ -60,8 +60,9 @@ html, body {
     pointer-events: none;
     background-color: #464646;
     border: #FFFFFF solid 10px;
-    visibility: hidden;
     border-radius: 20px;
+    left: 50%; 
+    transform: translateX(-50%);
 }
 
 #rollTitle {
@@ -218,11 +219,14 @@ html, body {
 }
 
  #bottomRow1 {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     height: 50px;
+    position: relative;
+    transform: translateX(-50%);
     display: flex;
-    justify-self: center;
     justify-content: center;
+    left: 50%;
 }
 
 #bottomRow1 button {
@@ -234,11 +238,14 @@ html, body {
 }
 
  #bottomRow2 {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     height: 50px;
+    position: relative;
+    transform: translateX(-50%);
     display: flex;
-    justify-self: center;
     justify-content: center;
+    left: 50%;
 }
 
 #bet18, #betEven, #betOdd, #bet36 {
@@ -487,8 +494,9 @@ html, body {
     justify-content: center;
     bottom: 0;
     align-items: center;
-    justify-self: center;
     width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     gap: 400px;
     z-index: 0;
     pointer-events: none;
@@ -549,8 +557,10 @@ html, body {
 #insertArea {
     display: flex;
     flex-direction: row;
+    position: relative;
     width:  800px;
-    justify-self: center;
+    left: 50%;
+    transform: translateX(-50%);
     margin-top: 20px;
     height: 75px;
     justify-content: space-around;
@@ -682,7 +692,9 @@ html, body {
     cursor: pointer;
     font-size: 20px;
     transition: 1s ease-out;
-    justify-self: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #464646;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 10px;
@@ -1045,6 +1057,19 @@ html, body {
     }
 }
 
+@media (max-width: 700px) {
+    #bottomRow1, #bottomRow2 {
+        width: 100%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #bottomRow1 button, #bet18, #betEven, #betOdd, #bet36, #blackSelected, #redSelected {
+        min-width: 0;
+    }
+}
+
 @media (max-width: 425px) {
     #mainCover {
         opacity: 1;
@@ -1064,4 +1089,6 @@ html, body {
     text-align: center;
     color: #FFFFFF;
 }
+
+
 }
