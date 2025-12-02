@@ -799,7 +799,8 @@ html, body {
     background-color: #3b3b3b;
     z-index: 100000;
     justify-content: center;
-    justify-self: center;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 1rem;
     border: #FFFFFF solid 10px;
     top: 50%;
