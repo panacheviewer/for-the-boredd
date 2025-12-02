@@ -706,7 +706,7 @@ html, body {
 }
 
 #allInButton:hover {
-    transform: scale(1.1);
+    transform: translateX(-50%) scale(1.1);
 }
 
 #allInCoverBox, .allInCoverBox {
@@ -739,7 +739,6 @@ html, body {
     display: flex;
     position: fixed;
     width: 500px;
-    position: relative;
     left: 50%;
     transform: translateX(-50%);
     height: 100px;
@@ -1001,10 +1000,10 @@ html, body {
 
 @keyframes raiseSlight {
     0% {
-        transform:  translateY(0);
+        transform:  translateX(-50%) translateY(0);
     }
     100% {
-        transform:  translateY(-20px);
+        transform: translateX(-50%) translateY(-20px);
     }
 }
 
@@ -1015,7 +1014,7 @@ html, body {
     }
     to {
         font-size: 100px;
-        letter-spacing: 200px;
+        letter-spacing: 100;
     }
 }
 
