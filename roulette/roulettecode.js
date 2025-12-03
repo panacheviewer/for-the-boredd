@@ -354,14 +354,14 @@ setTimeout(()=> {
         rollSetterClone.textContent = finalResult;
         exitOut = true;
         closePromptClone.style.visibility = 'visible';
+        closePromptClone.style.zIndex = 990;
         rollBoxClone.style.transform = 'translateX(-50%) scale(1.1)';
         rollBoxClone.style.boxShadow = '0 0 100px 100px rgba(243, 198, 32, 0.5)';
 
-        const clickX = (click) => {
-            if(click.key === "x" || click.key === "X") {
+        const clickLogic = () => {
             if (exitOut === true) {
 
-                document.removeEventListener('keydown', clickX);
+            document.removeEventListener('keydown', clickX);
 
             rollSetterClone.textContent = "";
             rollBoxClone.style.scale = 1;
@@ -384,9 +384,19 @@ setTimeout(()=> {
         } else {
 
         }
+        };
+
+        const clickX = (click) => {
+            if(click.key === "x" || click.key === "X") {
+            clickLogic();
     }
 }
 
+    closePromptClone.onclick = function() {
+        if (exitOut === true) {
+            clickLogic();
+    }
+    }
         document.addEventListener('keydown', clickX);
     }, rollTime)
 }
