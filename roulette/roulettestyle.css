@@ -57,7 +57,6 @@ html, body {
     width: 400px;
     height: 150px;
     align-items: center;
-    pointer-events: none;
     background-color: #464646;
     border: #FFFFFF solid 10px;
     border-radius: 20px;
@@ -85,8 +84,12 @@ html, body {
 }
 
 #closePrompt, .closePrompt2 {
+    border: #FFFFFF 1px solid;
+    border-radius: 10px;
+    background-color: #3b3b3b;
     margin: 0;
     transition: 0.5s ease-out;
+    cursor: pointer;
     visibility: hidden;
     transform: translateY(-10px);
     color: #FFFFFF;
@@ -1058,7 +1061,7 @@ html, body {
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
     #bottomRow1, #bottomRow2 {
         width: 100%;
         max-width: 600px;
@@ -1069,6 +1072,23 @@ html, body {
     #bottomRow1 button, #bet18, #betEven, #betOdd, #bet36, #blackSelected, #redSelected {
         min-width: 0;
     }
+    .closePrompt2 {
+    visibility: hidden;
+    color: transparent;
+    background-color: transparent;
+    pointer-events: none;
+    content: '';
+    font-size: 0;
+    line-height: 0;
+}
+
+.closePrompt2::after {
+        content: "click to close"; 
+        color: #FFFFFF; 
+        font-size: 14px;
+        line-height: initial;
+        cursor: pointer;
+}
 }
 
 @media (max-width: 425px) {
@@ -1090,6 +1110,5 @@ html, body {
     text-align: center;
     color: #FFFFFF;
 }
-
 
 }
