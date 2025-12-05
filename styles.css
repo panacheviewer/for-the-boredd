@@ -54,10 +54,11 @@ body {
     align-items: center;
 }
 
-#textSection {
+.textSection {
     display: flex;
-    justify-content: space-evenly;
-    gap: 80px;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
 }
 
 .textHolder {
@@ -70,6 +71,8 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     margin: 0;
+    font-size: 20px;
+    
 }
 
 .textHolder p {
@@ -77,12 +80,14 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 10px;
     margin: 0;
+    width: 200px;
+    font-size: 12px;
 }
 
 .buttonHolder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 200px;
+    top: 0;
+    height: 50px;
 }
 
 .playButtonR {
@@ -94,23 +99,16 @@ body {
     border: 5px solid #232323;
     color: #FFFFFF;
     cursor: pointer;
+    float: right;
     text-decoration: none;
     font-size: 20px;
-}
-
-.playTagR {
-    text-decoration: none;
-    color: #FFFFFF;
-    font-size: 20px;
-    cursor: pointer;
 }
 
 
 .bottomText {
     position: fixed;
     display: flex;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-self: center;
     color: white;
     font-size: 20px;
     bottom: 10px;
@@ -138,6 +136,21 @@ body {
     animation: rotate 2s ease-in-out;
 }
 
+#RselectRoulette::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    border-radius: 1rem;
+    background-image: conic-gradient(from var(--rotangle), #E0080B, #000000, #000000, #E0080B);
+    z-index: -1;
+}
+
+#RselectRoulette:hover::after {
+    animation: rotate 2s ease-in-out;
+}
+
 .playButtonR:hover {
     transform: scale(1.1);
     background-color: #414141;
@@ -158,4 +171,3 @@ body {
         --rotangle: 360deg
     }
 }
-
