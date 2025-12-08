@@ -160,7 +160,7 @@ function clickXHandler(click) {
 }
 
 
-function rollSets() {
+
 function rollSets() {
     let forcedLossFound = false;
     
@@ -213,7 +213,6 @@ function rollSets() {
         }
     }
 }    
-}
 
 function rollAnimation() {
      let rollBoxClone = rollBox.cloneNode(true);
@@ -851,8 +850,8 @@ cacheCheckbox.addEventListener('change', () => {
     localStorage.setItem('checked1', checked)
 
     if (!checked) {
-        localStorage.removeItem('balance1');
-        localStorage.removeItem('wins1');
-        localStorage.removeItem('losses1');
+        localStorage.removeItem('balance');
+        localStorage.removeItem('wins');
+        localStorage.removeItem('losses');
     }
 })
