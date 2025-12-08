@@ -88,6 +88,7 @@ html, body {
     border-radius: 10px;
     background-color: #3b3b3b;
     margin: 0;
+    width: 100px;
     transition: 0.5s ease-out;
     cursor: pointer;
     visibility: hidden;
