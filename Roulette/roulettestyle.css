@@ -90,6 +90,7 @@ html, body {
     margin: 0;
     transition: 0.5s ease-out;
     cursor: pointer;
+    width: 100px;
     visibility: hidden;
     transform: translateY(-10px);
     color: #FFFFFF;
