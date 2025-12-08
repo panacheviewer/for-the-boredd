@@ -7,9 +7,9 @@ let netProfit = document.getElementById('netProfitV');
 let rouletteBoard = document.getElementById('rouletteBoard');
 
 //Player Stats
-let balance = Number(localStorage.getItem('balance')) || 100;
-let wins = localStorage.getItem('wins') || 0;
-let losses = localStorage.getItem('losses') || 0;
+let balance = Number(localStorage.getItem('balance1')) || 100;
+let wins = localStorage.getItem('wins1') || 0;
+let losses = localStorage.getItem('losses1') || 0;
 let profit = balance - 100;
 
 //Buttons
@@ -106,7 +106,7 @@ let cacheCheckbox = document.getElementById('cacheCheckbox');
 let resetButton = document.getElementById('resetButton');
 let settingClose = document.getElementById('settingClose');
 
-let checked = JSON.parse(localStorage.getItem('checked'));
+let checked = JSON.parse(localStorage.getItem('checked1'));
 
 if (checked === null) {
     checked = true;
@@ -129,9 +129,9 @@ function statUpdate() {
     roundsWon.textContent = wins;
     roundsLost.textContent = losses;
     netProfit.textContent = "$" + profit;
-    localStorage.setItem('balance', balance);
-    localStorage.setItem('wins', wins);
-    localStorage.setItem('losses', losses);
+    localStorage.setItem('balance1', balance);
+    localStorage.setItem('wins1', wins);
+    localStorage.setItem('losses1', losses);
     cacheCheckbox.checked = checked;
 }
 
@@ -848,11 +848,11 @@ resetButton.onclick = function() {
 
 cacheCheckbox.addEventListener('change', () => {
     checked = cacheCheckbox.checked;
-    localStorage.setItem('checked', checked)
+    localStorage.setItem('checked1', checked)
 
     if (!checked) {
-        localStorage.removeItem('balance');
-        localStorage.removeItem('wins');
-        localStorage.removeItem('losses');
+        localStorage.removeItem('balance1');
+        localStorage.removeItem('wins1');
+        localStorage.removeItem('losses1');
     }
 })
