@@ -781,16 +781,14 @@ html, body {
 
 #settingScreen {
     position: fixed;
-    display: flex;
     flex-direction: column;
     text-align: center;
     width: 650px;
     height: 300px;
-    gap: 20px;
     visibility: hidden;
     background-color: #3b3b3b;
     z-index: 100000;
-    justify-content: center;
+    margin: 0 auto;
     border-radius: 1rem;
     border: #FFFFFF solid 10px;
     left: 50%;
@@ -801,16 +799,19 @@ html, body {
 #settingScreen h1 {
     color: #FFFFFF;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    top: 10px;
+    top: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 #settingsList {
     display: flex;
     flex-direction: column;
+    align-self: center;
     width: 650px;
     align-items: center;
     justify-self: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 #settingsList div {
@@ -852,21 +853,24 @@ html, body {
 }
 
 #settingClose {
+    position: absolute;
     background-color: #E0080B;
     height: 40px;
     transition: transform 0.3s ease;
     cursor: pointer;
     width: 150px;
-    margin: 0 auto;
-    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
     font-size: 20px;
     color: #FFFFFF;
     border: #FFFFFF solid 1px;
-    border-radius: 0.4rem;
+    border-radius: 0.4rem; 
 }
 
 #settingClose:hover {
-    transform: scale(1.1);
+    left: 50%;
+    transform: translateX(-50%) scale(1.1);
 }
 
 #resetButton:hover {
