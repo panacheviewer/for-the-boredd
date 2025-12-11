@@ -832,7 +832,7 @@ html, body {
     margin: 0;
 }
 
-#cacheCheckbox {
+#cacheCheckbox, #commentCheckBox {
     width: 30px;
     height: 30px;
     border: #FFFFFF solid 1px;
