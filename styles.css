@@ -108,8 +108,8 @@ body {
 
 .bottomText {
     position: fixed;
-    display: flex;
-    justify-self: center;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     font-size: 20px;
     bottom: 10px;
@@ -172,3 +172,4 @@ body {
         --rotangle: 360deg
     }
 }
+
