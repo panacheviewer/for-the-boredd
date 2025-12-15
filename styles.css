@@ -25,12 +25,21 @@ body {
     text-align: center;
 }
 
-.gamesTitle {
+.gamesTitle, .specialTitle, #specialSub {
     top: 300px;
     color: white;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     letter-spacing: 3px;
+}
+
+.specialTitle {
+    margin-top: 100px;
+}
+
+#specialSub {
+    margin: 0;
+    font-family: 'Google Sans', sans-serif;
 }
 
 #gamesList {
@@ -39,6 +48,10 @@ body {
     align-items: center;
     gap: 30px;
     flex-wrap: wrap;
+}
+
+.specialGamesList {
+    margin-top: 50px;
 }
 
 .gameOption, #selectRoulette {
@@ -172,4 +185,3 @@ body {
         --rotangle: 360deg
     }
 }
-
