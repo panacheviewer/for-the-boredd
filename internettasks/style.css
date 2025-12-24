@@ -1,0 +1,75 @@
+html {
+    background-color: #232323;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+    scrollbar-color: #000000;
+}
+
+.mainTitle {
+    color: #FFFFFF;
+    font-family: "Bitcount Grid Single", system-ui;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+}
+
+.whoTitle {
+    color: #FFFFFF;
+    font-family: "Ubuntu", sans-serif;
+    text-align: center;
+}
+
+.holdMain {
+    margin-top: 50px;
+    font-family: 'Google Sans', sans-serif;
+    text-align: center;
+    color: white;
+}
+
+.holdSub {
+    font-family: 'Google Sans', sans-serif;
+    text-align: center;
+    color: white;
+}
+
+#typeHolder {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+#typeHolder button {
+    width: 275px;
+    height: 75px;
+    position: relative;
+    left: 50%;
+    transform: translatex(-50%);
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+    border-radius: 20px;
+    border: #FFFFFF solid 3px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+}
+
+#typeHolder button:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+#gameCover {
+    background-color: #232323;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 5;
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: 3s;
+}
