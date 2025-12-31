@@ -104,7 +104,7 @@ html {
     height: 50px;
 }
 
-.playButtonR {
+.playButton {
     width: 120px;
     height: 50px;
     background-color: #000000;
@@ -150,7 +150,7 @@ html {
     animation: rotate 2s ease-in-out;
 }
 
-#RselectRoulette::after {
+#ITselectRoulette::after {
     content: '';
     position: absolute;
     height: 100%;
@@ -161,7 +161,7 @@ html {
     z-index: -1;
 }
 
-#RselectRoulette:hover::after {
+#ITselectRoulette:hover::after {
     animation: rotate 2s ease-in-out;
 }
 
