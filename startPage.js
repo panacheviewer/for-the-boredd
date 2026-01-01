@@ -2,7 +2,7 @@ const currentCountdownDate = new Date("Jan 28, 2026 09:20:00").getTime();
 const specialSub = document.getElementById("specialSub");
 const ITPlay = document.getElementById('ITPlay');
 const devTag = document.getElementById('devTag');
-let kp = localStorage.getItem('kp') || "false";
+let kp = localStorage.getItem('kp');
 
 
 function time() {
@@ -25,7 +25,7 @@ time();
 setInterval(time, 1000);
 
 ITPlay.onclick = function() {
-    if (kp === "true") {
+    if (kp) {
         window.location.href = './InternetTasks';
     } else {
         let pr;
@@ -33,7 +33,7 @@ ITPlay.onclick = function() {
         if (pr === "00000000000001") {
             kp = "true";
             localStorage.setItem('kp', kp);
-            window.location.href = './internettasks';
+            window.location.href = './InternetTasks';
         } else {
             window.alert('Failed To Access');
         }
