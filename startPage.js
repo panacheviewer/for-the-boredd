@@ -33,7 +33,7 @@ ITPlay.onclick = function() {
         if (pr === "00000000000001") {
             kp = "true";
             localStorage.setItem('kp', kp);
-            window.location.href = './InternetTasks';
+            window.location.href = './internettasks';
         } else {
             window.alert('Failed To Access');
         }
