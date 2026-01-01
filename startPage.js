@@ -38,12 +38,9 @@ ITPlay.onclick = function() {
     }
 
 }
-
-do {
+if (kp === true) {
     devTag.style.visibility = "visible";
-} while (kp === true)
-
-do {
-    devTag.style.visibility = "hidden";
-} while (kp === false)
+} else {
+    devTag.style.visibility = "hidden";    
+}
 
