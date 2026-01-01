@@ -23,6 +23,27 @@ html {
     text-align: center;
 }
 
+#backTimer {
+    position: fixed;
+    top: 30px;
+    text-align: center;
+    visibility: hidden;
+    box-shadow: 0 0 60px 20px rgba(0, 0, 0, 0.5);
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    left: 50%;
+    border: #FFFFFF solid 2px;
+    transition: 0.3s ease-out;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 500px;
+}
+
+#timeText {
+    color: #FFFFFF;
+    font-family: 'Google Sans', sans-serif;
+}
+
 .holdMain {
     margin-top: 50px;
     font-family: 'Google Sans', sans-serif;
@@ -69,7 +90,395 @@ html {
     height: 100%;
     top: 0;
     z-index: 5;
-    transform: translateY(100%);
+    opacity: 1;
     visibility: hidden;
-    transition: 3s;
 }
+
+.challangeTitle {
+    text-align: center;
+    color: #FFFFFF;
+    visibility: hidden;
+    font-family: 'Google-Sans', sans-serif;
+    font-size: 35px;
+    letter-spacing: 2px;
+}
+
+.challangeLabel {
+    text-align: center;
+    color: #e9e9e9;
+    visibility: hidden;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 30px;
+}
+
+.startTimer {
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFFFFF;
+    margin-top: 200px;
+    visibility: hidden;
+    font-size: 200px;
+    font-family: 'Lato', sans-serif;
+    position: fixed;
+}
+
+.cardScreen {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    opacity: 1;
+    visibility: hidden;
+    z-index: 7;
+    margin: 0;
+    height: 100%;
+    background-color: #232323;
+}
+
+.cardSideHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 8;
+    width: 50%;
+    height: 100%;
+    top: 300px;
+    position: fixed;
+}
+
+
+.cardBody {
+    background-color: #393E46;
+    width: 300px;
+    height: 150px;
+    margin-left: 10px;
+    border-radius: 10px;
+    pointer-events: none;
+    position: relative;
+}
+
+.cardTextHolder {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    bottom: 0;
+    width: 100%;
+    gap: 2px;
+    height: 70px;
+}
+
+.cardTitleHolder {
+    display: flex;
+    flex-direction: column;
+}
+
+.bankTitle {
+    position: relative;
+    color: #FFFFFF;
+    font-size: 25px;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    margin-top: 10px;
+    margin-right: 20px;
+    align-self: flex-end;
+}
+
+.bankChip {
+    width: 50px;
+    height: auto;
+    margin-left: 15px;
+}
+
+.cardTextHolder p {
+    color: #d4d4d4;
+    margin: 0;
+    margin-left: 5px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.cardNumHolder {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.backBody {
+    background-color: #393E46;
+    width: 300px;
+    height: 150px;
+    margin-left: 10px;
+    display: flex;
+    pointer-events: none;
+    flex-direction: column;
+    border-radius: 10px;
+    position: relative;
+}
+
+.blackStrip {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #000000;
+    height: 50px;
+}
+
+.backBody p {
+    color: #d4d4d4;
+    font-family: 'Ubuntu', sans-serif;
+    pointer-events: none;
+}
+
+#cardForm {
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.cardFormBox {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 250px;
+    width: 500px;
+    height: 400px;
+    border-radius: 3px;
+    background-color: #e0e0e0;
+    border: #9b9b9b solid 5px;
+}
+
+.cardFormBox h1 {
+      color: #202020;
+      text-align: center;
+      width: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cardFormBox p {
+    color: #000000;
+    display: flex;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 20px;
+}
+
+.cardFormBox input {
+    width: 400px;
+    height: 35px;
+    border-radius: 7px;
+    color: #242424;
+    font-size: 15px;
+    background-color: #cccccc;
+    border: #c9c9c9 solid 2px;
+    border-radius: 2px;
+    height: 40px;
+}
+
+.cardFormBox input::placeholder {
+    color: #242424;
+    text-align: left;
+}
+
+.formDiv {
+    margin: 0;
+}
+
+.formDiv div p {
+    padding: 0;
+    margin: 0;
+}
+
+.formDiv div {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.bottomFormDiv {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+}
+
+#exDateForm {
+    width: 120px;
+    text-align: center;
+}
+
+#cvvForm {
+    width: 50px;
+    text-align: center;
+    justify-self: flex-end;
+}
+
+#cvvForm::placeholder, #exDateForm::placeholder {
+    text-align: center;
+    font-size: 17px;
+}
+
+.subCardButton {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1fb800;
+    color: #d4d4d4;
+    position: fixed;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+.payFailText {
+    position: absolute;
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 10px;
+    text-align: center;
+    color: #ff0000;
+    font-family: 'Ubuntu', sans-serif;
+    visibility: hidden;
+}
+
+.timeAnimPlay {
+    animation: drop 1s ease-out;
+}
+
+#finishBoard {
+    width: 500px;
+    height: 150px;
+    box-shadow: 0 0 60px 20px rgba(0, 0, 0, 0.5);
+    background-color: #1a1a1a;
+    position: fixed;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+    flex-direction: row;
+    gap: 20px;
+    transform: translateX(-50%);
+    z-index: 1000;
+    bottom: 50px;
+    border-radius: 20px;
+    border: #FFFFFF solid 3px;
+}
+
+#finishBoard button {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.nextDiv, .retryDiv {
+    width: 125px;
+    height: 125px;
+    border-radius: 10px;
+    position: relative;
+    border: #FFFFFF solid 1px;
+    visibility: hidden;
+    top: 12.5px;
+    transition: 0.3s;
+    background-color: #0c0c0c;
+}
+
+.nextDiv:hover, .retryDiv:hover {
+    transform: translateY(-12px);
+}
+
+.nextDiv h1, .retryDiv h1 {
+    color: #FFFFFF;
+    position: absolute;
+    pointer-events: none;
+    font-size: 40px;
+    left: 50%;
+    top: 20px;
+    margin: 0;
+    transform: translateX(-50%);
+}
+
+.nextDiv p, .retryDiv p {
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 20px;
+    font-family: 'Google Sans', sans-serif;
+    pointer-events: none;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.leaveDiv {
+    width: 125px;
+    height: 125px;
+    border-radius: 10px;
+    position: relative;
+    visibility: hidden;
+    border: #ff0000 solid 1px;
+    top: 12.5px;
+    transition: 0.3s;
+    background-color: #0c0c0c;
+    animation: popUp 0.3s ease-out;
+}
+
+.leaveDiv:hover {
+    transform: translateY(-12px);
+}
+
+.leaveDiv h1 {
+    color: #ff0000;
+    position: absolute;
+    font-size: 40px;
+    left: 50%;
+    top: 20px;
+    margin: 0;
+    transform: translateX(-50%);
+}
+
+.leaveDiv p {
+    color: #ff0000;
+    position: absolute;
+    bottom: 20px;
+    font-family: 'Google Sans', sans-serif;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(0px) translateX(-50%) scale(1);
+        opacity: 1;
+        
+    } 100% {
+        transform: translateY(20px) translateX(-50%) scale(0.7);
+        opacity: 0.5;
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        transform:translateX(-50%) translateY(-20px);
+        opacity: 0.3;
+    } to {
+        transform:translateX(-50%) translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes popUp {
+    0% {
+        transform: translateY(12.5px);
+    } 70% {
+        transform: translateY(-10px);
+    } 100% {
+        transform: translateY(0px);
+    }
+} 
