@@ -13,7 +13,7 @@ function time() {
     let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-    specialSub.textContent = "Available In: " + days + "d " + String(hours).padStart(2, "0") + "h " + String(minutes).padStart(2, "0") + "m " + String(seconds).padStart(2, "0") + "s";; 
+    specialSub.textContent = "Available In: " + days + "d " + String(hours).padStart(2, "0") + "h " + String(minutes).padStart(2, "0") + "m " + String(seconds).padStart(2, "0") + "s";
 }
 time();
 
