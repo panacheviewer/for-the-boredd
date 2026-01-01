@@ -8,6 +8,11 @@ let kp = localStorage.getItem('kp') || "false";
 function time() {
     let todayDate = new Date().getTime();
     let timeDiff = currentCountdownDate - todayDate;
+
+    if (timeDiff <= 0) {
+        specialSub.textContent = "Internet Tasks Available Now!";
+        return;
+    };
     let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
     let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
@@ -20,9 +25,7 @@ time();
 setInterval(time, 1000);
 
 ITPlay.onclick = function() {
-    if (kp === true) {
-        kp = true;
-        localStorage.setItem('kp', kp);
+    if (kp === "true") {
         window.location.href = './InternetTasks';
     } else {
         let pr;
@@ -38,7 +41,7 @@ ITPlay.onclick = function() {
     }
 
 }
-if (kp === true) {
+if (kp === "true") {
     devTag.style.visibility = "visible";
 } else {
     devTag.style.visibility = "hidden";    
