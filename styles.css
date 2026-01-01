@@ -125,8 +125,26 @@ html {
     transform: translateX(-50%);
     color: white;
     font-size: 20px;
+    text-align: center;
+    margin-top: 2px;
     bottom: 10px;
     font-family: 'Ubuntu', sans-serif;
+}
+
+#devTag {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(39, 39, 39);
+    font-size: 30px;
+    visibility: hidden;
+    pointer-events: none;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 2px;
+    bottom: 100px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #e2e2e2;
 }
 
 @property --rotangle {
