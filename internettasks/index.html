@@ -9,16 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./style.css">
     <title>Reaction Test For The Bored</title>
 </head>
 <body>
-    <h1 class="mainTitle">Reaction Test For The Bored</h1>
-    <p class="whoTitle">By: Panache Bansal</p>
+    <h1 class="mainTitle">Internet Tasks For The Bored</h1>
+    <p class="whoTitle">Get Better At Things You Don't Need To Be Good At</p>
 
     <h1 class="holdMain">How it works:</h1>
-    <p class="holdSub">you will be presented with a random task that is commonly performed on a computer. This game tests how fast you are able to complete each task.</p>
+    <p class="holdSub">You will be presented with a random task that is commonly performed on a computer. This game tests how fast you are able to complete each task.</p>
+
+    <div id="backTimer">
+        <h1 id="timeText">0s 000ms</h1>
+    </div>
+
+    <div id="finishBoard">
+        <div class="retryDiv">
+            <button class="retryButton"></button>
+            <h1 class="retryStyle">↻</h1>
+            <p>Retry</p>
+        </div>
+        <div class="leaveDiv">
+            <button class="leaveButton"></button>
+            <h1 class="arrowStyle">↑</h1>
+            <p>Leave</p>            
+        </div>
+        <div class="nextDiv">
+            <button class="nextButton"></button>
+            <h1 class="arrowStyle">➜</h1>
+            <p>Continue</p>
+        </div>
+    </div>
 
     <div id="typeHolder">
         
@@ -29,10 +52,74 @@
     </div>
 
     <div id="gameCover">
-        <h1>Challange:</h1>
-        <h3>Failed To Load</h3>
+        <h1 class="challangeTitle">Challange:</h1>
+        <h3 class="challangeLabel">Failed To Load</h3>
 
-        <h1>3</h1>
+        <h1 class="startTimer">3</h1>
+    </div>
+
+    <div id="cardScreen" class="cardScreen">
+        <div class="cardSideHolder">
+            <div class="cardBody" id="cardBody">
+
+            <div class="cardTitleHolder">
+            <h1 class="bankTitle">Bored Bank</h1>
+            <img src="./chip.png" alt="chip" class="bankChip">
+            </div>
+            
+            <div class="cardTextHolder">
+            <p class="cardNumHolder">0000 0000 0000 0000</p>
+            <p class="exDateHolder">07/27</p>
+            <p class="nameHolderCard">Bored Person</p>
+
+            </div>
+
+        </div>
+
+        <div class="backBody" id="backBody">
+        <div class="blackStrip"></div>
+        <p></p>
+        <p class="cvvHolder">000</p>
+        </div>
+        
+    </div>
+        
+        <div id="cardForm">
+            <div class="cardFormBox">
+            <h1>Payment Information</h1>
+            <p class="payFailText">Payment Failed</p>
+
+        <div class="formDiv">
+            <div>
+                <p class="cardHolderTitle">Card Holder</p>
+                <input type="text" placeholder="Ex: Daniel Trupertny" id="holderNameForm">
+            </div>
+            <div>
+                <p>Card Number</p>
+                <input type="text" placeholder="0000 0000 0000 0000" minlength="16" maxlength="19" id="cardNumberForm">
+            </div>
+
+        </div>
+            
+        <div class="formDiv bottomFormDiv">
+            <div>
+                <p>Expiration Date</p>
+                <input type="text" maxlength="5" placeholder="mm/yy" id="exDateForm" inputmode="numeric">
+            </div>
+            <div >
+                <p>CVV</p>
+                <input type="text" placeholder="000" id="cvvForm">
+            </div>
+
+        </div>
+
+
+            <button type="submit" class="subCardButton">Pay Now</button>
+
+            </div>
+            
+        </div>
+        
     </div>
 
     <script src="./code.js"></script>
