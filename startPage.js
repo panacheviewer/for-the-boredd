@@ -26,14 +26,14 @@ setInterval(time, 1000);
 
 ITPlay.onclick = function() {
     if (kp) {
-        window.location.href = '/internettasks/';
+        window.location.href = '/InternetTasks/';
     } else {
         let pr;
         pr = window.prompt('Enter Early Access Code: ');
         if (pr === "00000000000001") {
             kp = "true";
             localStorage.setItem('kp', kp);
-            window.location.href = '/internettasks/';
+            window.location.href = '/InternetTasks/';
         } else {
             window.alert('Failed To Access');
         }
