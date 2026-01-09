@@ -31,6 +31,17 @@ const option2 = "Copy & Paste";
 const option3 = "Login";
 const option4 = "Close Window";
 
+const wordList = [
+    "the", "be", "to", "of", "and", "a", "in", "that", "have", "I",
+    "it", "for", "not", "on", "with", "he", "as", "you", "do", "at",
+    "this", "but", "his", "by", "from", "they", "we", "say", "her", "she",
+    "or", "an", "will", "my", "one", "all", "would", "there", "their", "is",
+    "are", "was", "were", "been", "has", "had", "can", "could", "may", "might",
+    "go", "come", "make", "see", "know", "get", "give", "find", "think", "tell",
+    "work", "call", "try", "ask", "need", "feel", "become", "leave", "put", "mean",
+    "keep", "let", "begin", "seem", "help", "talk", "turn", "start", "show", "hear"
+]
+
 const firstNameList = [
     "Jonathan",
     "Daniel",
@@ -117,7 +128,7 @@ function startTimer() {
     intervalLoop = setInterval(() => updTime(), 10);
 }
 
-function finishRound() {
+function finishRound(el) {
     if (!started) return;
     started = false;
     let finalTime = timeDiff;
@@ -131,17 +142,17 @@ function finishRound() {
     
     async function fBoard() {
         let finishBoardClone = finishBoard.cloneNode(true);
-        let retryDivClone = finishBoardClone.querySelector('.retryDiv');
+        let statDivClone = finishBoardClone.querySelector('.statDiv');
         let leaveDivClone = finishBoardClone.querySelector('.leaveDiv');
         let nextDivClone = finishBoardClone.querySelector('.nextDiv');
-        let retryButton = retryDivClone.querySelector('.retryButton');
+        let statButton = statDivClone.querySelector('.statButton');
         let leaveButton = leaveDivClone.querySelector('.leaveButton');
         let nextButton = nextDivClone.querySelector('.nextButton');
 
         document.body.appendChild(finishBoardClone);
-        retryDivClone.style.animation = "popUp 0.4s";
+        statDivClone.style.animation = "popUp 0.4s";
         finishBoardClone.style.visibility = "visible";
-        retryDivClone.style.visibility = "visible";
+        statDivClone.style.visibility = "visible";
 
         await sleep(600);
         leaveDivClone.style.animation = "popUp 0.4s";
@@ -151,10 +162,26 @@ function finishRound() {
         nextDivClone.style.animation = "popUp 0.4s";
         nextDivClone.style.visibility = "visible";
 
+        leaveButton.onclick = function() {
+            timerUI.style.visibility = "hidden";
+            el.remove();
+            finishBoardClone.remove();
+            timerText.style.color = "#FFFFFF";
+            timerText.textContent = "0s 0ms";
+        
+        }
+
+        nextButton.onclick = function() {
+            timerUI.style.visibility = "hidden";
+            startGame();
+            el.remove();
+            finishBoardClone.remove();
+            timerText.style.color = "#FFFFFF";
+            timerText.textContent = "0s 0ms";
+        }
     }
 
     setTimeout(fBoard, 1000);
-    
 
 }
 
@@ -340,7 +367,7 @@ subCardButtonClone.addEventListener("click", () => {
     const correctCVV = cvvFormClone.value === selectedCVV;
 
     if (correctHolder && correctNumber && correctDate && correctCVV) {
-        finishRound();
+        finishRound(cardScreenClone);
     } else {
         let IW = 1;
         console.log("WI"+ IW);
