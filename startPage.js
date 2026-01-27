@@ -1,7 +1,9 @@
-const currentCountdownDate = new Date("Feb 30, 2026 09:20:00").getTime();
+const currentCountdownDate = new Date("Feb 28, 2026 09:20:00").getTime();
 const specialSub = document.getElementById("specialSub");
+const RselectIT = document.getElementById('RselectIT');
 const ITPlay = document.getElementById('ITPlay');
 const devTag = document.getElementById('devTag');
+const gamesList = document.getElementById('gamesList');
 let kp = localStorage.getItem('kp');
 
 
@@ -11,6 +13,7 @@ function time() {
 
     if (timeDiff <= 0) {
         specialSub.textContent = "Internet Tasks Available Now!";
+        gamesList.appendChild(RselectIT);
         return;
     };
     let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
@@ -26,7 +29,7 @@ setInterval(time, 1000);
 
 ITPlay.onclick = function() {
     if (kp) {
-        window.location.href = '/InternetTasks/';
+        window.location.href = '/internettasks/';
     } else {
         let pr;
         pr = window.prompt('Enter Early Access Code: ');
