@@ -5,6 +5,12 @@ const timerUI = document.getElementById('backTimer');
 const timerText = document.getElementById('timeText');
 const finishBoard = document.getElementById('finishBoard');
 
+//Times
+
+let cardFormTimes = JSON.parse(localStorage.getItem("cardTimes")) || [];
+let CPTimes = JSON.parse(localStorage.getItem("CPTimes")) || [];
+
+
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 
@@ -13,6 +19,9 @@ const exDateInput = document.getElementById('exDateForm');
 const holderNameForm = document.getElementById('holderNameForm');
 const cardNumberForm = document.getElementById('cardNumberForm');
 const cvvForm = document.getElementById('cvvForm');
+
+//CP Option
+const CPScreen = document.getElementById('CPScreen');
 
 let challangeHolder;
 let currentChallange;
@@ -108,6 +117,16 @@ const lastNameList = [
     "Compton"
 ];
 
+function compStore(gameTime, mode) {
+    if (mode === "card") {
+        cardFormTimes.push(gameTime);
+        localStorage.setItem("cardTimes", JSON.stringify(cardFormTimes));
+    } else if (mode === "CP") {
+        CPTimes.push(gameTime);
+        localStorage.setItem("CPTimes", JSON.stringify(CPTimes));
+    }
+}
+
 function updTime() {
     if (!started) return;
     currTime = Date.now();
@@ -128,7 +147,7 @@ function startTimer() {
     intervalLoop = setInterval(() => updTime(), 10);
 }
 
-function finishRound(el) {
+function finishRound(el, m) {
     if (!started) return;
     started = false;
     let finalTime = timeDiff;
@@ -139,6 +158,7 @@ function finishRound(el) {
     sTime = Math.floor(timeDiff / 1000);
     msTime = String(timeDiff % 1000).padStart(3, "0");
     timerText.textContent = sTime + "s " + msTime + "ms";
+    compStore(timeDiff, m);
     
     async function fBoard() {
         let finishBoardClone = finishBoard.cloneNode(true);
@@ -186,11 +206,14 @@ function finishRound(el) {
 }
 
 function pickMode() {
-    challangeHolder = Math.floor(Math.random() + 1);
+    challangeHolder = Math.floor(Math.random() * 2 + 1);
     
     switch(challangeHolder) {
         case 1:
             currentChallange = option1;
+            break;
+        case 2:
+            currentChallange = option2;
             break;
     }
 
@@ -203,6 +226,12 @@ function startGame() {
     let challangeLabelClone = gameCoverClone.querySelector('.challangeLabel');
     let startTimerClone = gameCoverClone.querySelector('.startTimer');
     let t = 3;
+
+    console.log({
+  challangeTitleClone,
+  challangeLabelClone,
+  startTimerClone
+});
 
     document.body.appendChild(gameCoverClone);
     gameCoverClone.style.opacity = 1;
@@ -245,6 +274,7 @@ async function runAppear() {
     challangeTitleClone.style.visibility = "visible";
     
     await sleep(2000);
+    challangeLabelClone.textContent = "";
     challangeLabelClone.textContent = currentChallange;
     challangeLabelClone.style.visibility = "visible";
 
@@ -367,7 +397,7 @@ subCardButtonClone.addEventListener("click", () => {
     const correctCVV = cvvFormClone.value === selectedCVV;
 
     if (correctHolder && correctNumber && correctDate && correctCVV) {
-        finishRound(cardScreenClone);
+        finishRound(cardScreenClone, "card");
     } else {
         let IW = 1;
         console.log("WI"+ IW);
@@ -379,7 +409,37 @@ subCardButtonClone.addEventListener("click", () => {
     }
 });
 
+}
 
+function CPMode() {
+    let CPScreenClone = CPScreen.cloneNode(true);
+    let CPTextHolderClone = CPScreenClone.querySelector('.CPTextHolder');
+    let CPTextBinClone = CPScreenClone.querySelector('.CPTextBin');
+    let CPSubmitClone = CPScreenClone.querySelector('.CPSubmit');
+
+    let displayText = "";
+    CPScreenClone.removeAttribute('id');
+    document.body.appendChild(CPScreenClone);
+    CPScreenClone.style.visibility = "visible";
+    function pushText() {
+        let length = Math.floor(Math.random() * 130 + 300);
+        for(let i = 0; i < length; i++) {
+            let nextWordNum = Math.floor(Math.random() * wordList.length);
+            let nextWord = wordList[nextWordNum];
+            displayText += (displayText ? " " : "") + nextWord;
+
+        }
+    }
+    pushText();
+    CPTextHolderClone.textContent = displayText;
+
+    CPSubmitClone.addEventListener("click", () => {
+        const correctInput = CPTextBinClone.value.trim() === displayText.trim();
+
+        if (correctInput) {
+            finishRound(CPScreenClone, "CP");
+        }
+    });
 }
 
 function backBone() {
@@ -388,6 +448,9 @@ function backBone() {
             startTimer();
             cardMode();
             break;
+        case 2:
+            CPMode();
+            startTimer();
     }
 }
 
