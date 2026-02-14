@@ -1,4 +1,5 @@
-const startButton = document.getElementById('startButton1');
+const startButton = document.getElementById('startButton');
+const screenButton = document.getElementById('screenButton');
 const gameCover = document.getElementById('gameCover');
 const cardScreen = document.getElementById('cardScreen');
 const timerUI = document.getElementById('backTimer');
@@ -135,9 +136,14 @@ function compStore(gameTime, mode) {
 }
 
 function statPusher() {
+    let statScreenClone = statScreen.cloneNode(true);
+    let closeStat = statScreenClone.querySelector('.closeStat');
+    document.body.appendChild(statScreenClone);
+    statScreenClone.style.visibility = "visible";
+    let challangeBoardClone = statScreenClone.querySelector('.challangeBoard');
     for(let i = 0; i < upModes; i++) {
         let challangeClone = challangeTemplate.cloneNode(true);
-        challangeBoard.appendChild(challangeClone);
+        challangeBoardClone.appendChild(challangeClone);
         challangeClone.removeAttribute('id');
         challangeClone.style.visibility = "visible";
         let ttl = challangeClone.querySelector('.ttl');
@@ -146,22 +152,61 @@ function statPusher() {
         let bestTime = challangeClone.querySelector('.bestTime');
         switch(i) {
             case 0:
-                let bestTimeS = String(Math.floor(Math.min(cardFormTimes) / 1000)).padStart(3, "0");
-                let bestTimeMS = String(Math.min(cardFormTimes) % 1000).padStart(3, "0");
+                let att = cardFormTimes.length;
+
+                if (att === 0) {
+                    ttl.textContent = options[0];
+                    attCount.textContent = 0;
+                    avTime.textContent = "00s 000ms";
+                    bestTime.textContent = "00s 000ms";
+                    break;
+                }
+
+                let avSum = cardFormTimes.reduce((total, time) => total + time, 0);
+                let avTimeNum = avSum / att;
+                let bestTimeNum = Math.min(...cardFormTimes);
+                let bestTimeS = String(Math.floor(bestTimeNum / 1000)).padStart(2, "0");
+                let bestTimeMS = String(bestTimeNum % 1000).padStart(3, "0");
+                let avTimeS = String(Math.floor(avTimeNum / 1000)).padStart(2, "0");
+                let avTimeMS = String(Math.floor(avTimeNum % 1000)).padStart(3, "0");
+                
                 ttl.textContent = options[0];
-                attCount.textContent = cardFormTimes.length;
+                attCount.textContent = att;
+                avTime.textContent = avTimeS + "s " + avTimeMS + "ms";
                 bestTime.textContent = bestTimeS + "s " + bestTimeMS + "ms";
                 break;
             case 1:
+                let attCP = CPTimes.length;
+
+                if (attCP === 0) {
+                    ttl.textContent = options[1];
+                    attCount.textContent = 0;
+                    avTime.textContent = "00s 000ms";
+                    bestTime.textContent = "00s 000ms";
+                    break;
+                }
+
+                let avSumCP = CPTimes.reduce((total, time) => total + time, 0);
+                let avTimeNumCP = avSumCP / attCP;
+                let bestTimeNumCP = Math.min(...CPTimes);
+                let bestTimeSCP = String(Math.floor(bestTimeNumCP / 1000)).padStart(2, "0");
+                let bestTimeMSCP = String(bestTimeNumCP % 1000).padStart(3, "0");
+                let avTimeSCP = String(Math.floor(avTimeNumCP / 1000)).padStart(2, "0");
+                let avTimeMSCP = String(Math.floor(avTimeNumCP % 1000)).padStart(3, "0");
+                
                 ttl.textContent = options[1];
-                attCount.textContent = CPTimes.length;
+                attCount.textContent = attCP;
+                avTime.textContent = avTimeSCP + "s " + avTimeMSCP + "ms";
+                bestTime.textContent = bestTimeSCP + "s " + bestTimeMSCP + "ms";
                 break;
         }
 
     }
+    closeStat.addEventListener("click", () => {
+        statScreenClone.remove();
+    });
 }
 
-statPusher()
 
 function updTime() {
     if (!started) return;
@@ -217,6 +262,15 @@ function finishRound(el, m) {
         await sleep(600);
         nextDivClone.style.animation = "popUp 0.4s";
         nextDivClone.style.visibility = "visible";
+
+        statButton.onclick = function() {
+            timerUI.style.visibility = "hidden";
+            el.remove();
+            finishBoardClone.remove();
+            statPusher();
+            timerText.style.color = "#FFFFFF";
+            timerText.textContent = "0s 0ms";           
+        }
 
         leaveButton.onclick = function() {
             timerUI.style.visibility = "hidden";
@@ -486,3 +540,6 @@ startButton.onclick = function() {
     startGame();
 }
 
+screenButton.onclick = function() {
+    statPusher();
+}
