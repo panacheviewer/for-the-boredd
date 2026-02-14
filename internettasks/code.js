@@ -543,5 +543,3 @@ startButton.onclick = function() {
 screenButton.onclick = function() {
     statPusher();
 }
-
-
