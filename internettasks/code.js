@@ -4,6 +4,9 @@ const cardScreen = document.getElementById('cardScreen');
 const timerUI = document.getElementById('backTimer');
 const timerText = document.getElementById('timeText');
 const finishBoard = document.getElementById('finishBoard');
+const statScreen = document.getElementById('statScreen');
+const challangeBoard = document.getElementById('challangeBoard');
+const challangeTemplate = document.getElementById('challangeTemplate');
 
 //Times
 
@@ -34,11 +37,15 @@ let timeDiff;
 let msTime;
 let sTime;
 
-//Load Strings 
-const option1 = "Card Form";
-const option2 = "Copy & Paste";
-const option3 = "Login";
-const option4 = "Close Window";
+//Load Strings
+const options = [
+    "Card Form",
+    "Copy & Paste",
+    "Login",
+    "Close Window"
+];
+
+let upModes = 2;
 
 const wordList = [
     "the", "be", "to", "of", "and", "a", "in", "that", "have", "I",
@@ -127,6 +134,35 @@ function compStore(gameTime, mode) {
     }
 }
 
+function statPusher() {
+    for(let i = 0; i < upModes; i++) {
+        let challangeClone = challangeTemplate.cloneNode(true);
+        challangeBoard.appendChild(challangeClone);
+        challangeClone.removeAttribute('id');
+        challangeClone.style.visibility = "visible";
+        let ttl = challangeClone.querySelector('.ttl');
+        let attCount = challangeClone.querySelector('.attCount');
+        let avTime = challangeClone.querySelector('.avTime');
+        let bestTime = challangeClone.querySelector('.bestTime');
+        switch(i) {
+            case 0:
+                let bestTimeS = String(Math.floor(Math.min(cardFormTimes) / 1000)).padStart(3, "0");
+                let bestTimeMS = String(Math.min(cardFormTimes) % 1000).padStart(3, "0");
+                ttl.textContent = options[0];
+                attCount.textContent = cardFormTimes.length;
+                bestTime.textContent = bestTimeS + "s " + bestTimeMS + "ms";
+                break;
+            case 1:
+                ttl.textContent = options[1];
+                attCount.textContent = CPTimes.length;
+                break;
+        }
+
+    }
+}
+
+statPusher()
+
 function updTime() {
     if (!started) return;
     currTime = Date.now();
@@ -206,18 +242,10 @@ function finishRound(el, m) {
 }
 
 function pickMode() {
-    challangeHolder = Math.floor(Math.random() * 2 + 1);
-    
-    switch(challangeHolder) {
-        case 1:
-            currentChallange = option1;
-            break;
-        case 2:
-            currentChallange = option2;
-            break;
-    }
+    challangeHolder = Math.floor(Math.random() * 2);
+    currentChallange = options[challangeHolder];
+    console.log(currentChallange);
 
-    return 0;
 }
 
 function startGame() {
@@ -444,11 +472,11 @@ function CPMode() {
 
 function backBone() {
     switch(challangeHolder) {
-        case 1:
+        case 0:
             startTimer();
             cardMode();
             break;
-        case 2:
+        case 1:
             CPMode();
             startTimer();
     }
@@ -457,5 +485,4 @@ function backBone() {
 startButton.onclick = function() {
     startGame();
 }
-
 
