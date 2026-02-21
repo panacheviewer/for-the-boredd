@@ -70,6 +70,10 @@ const firstNameList = [
     "Noah",
     "Oliver",
     "Nicholas",
+    "Jonathan",
+    "Ethan",
+    "Maxwell",
+    "Erik",
     "Lucas",
     "Christopher",
     "Karl",
@@ -138,18 +142,22 @@ function compStore(gameTime, mode) {
 function statPusher() {
     let statScreenClone = statScreen.cloneNode(true);
     let closeStat = statScreenClone.querySelector('.closeStat');
+    statScreenClone.removeAttribute("id");
     document.body.appendChild(statScreenClone);
     statScreenClone.style.visibility = "visible";
+    closeStat.style.visibility = "visible";
     let challangeBoardClone = statScreenClone.querySelector('.challangeBoard');
     for(let i = 0; i < upModes; i++) {
         let challangeClone = challangeTemplate.cloneNode(true);
         challangeBoardClone.appendChild(challangeClone);
         challangeClone.removeAttribute('id');
+        challangeClone.style.position = "relative";
         challangeClone.style.visibility = "visible";
         let ttl = challangeClone.querySelector('.ttl');
         let attCount = challangeClone.querySelector('.attCount');
         let avTime = challangeClone.querySelector('.avTime');
         let bestTime = challangeClone.querySelector('.bestTime');
+        bestTime.style.color = "#00FF00";
         switch(i) {
             case 0:
                 let att = cardFormTimes.length;
@@ -159,6 +167,7 @@ function statPusher() {
                     attCount.textContent = 0;
                     avTime.textContent = "00s 000ms";
                     bestTime.textContent = "00s 000ms";
+                    bestTime.style.color = "#FF0000";
                     break;
                 }
 
@@ -183,6 +192,7 @@ function statPusher() {
                     attCount.textContent = 0;
                     avTime.textContent = "00s 000ms";
                     bestTime.textContent = "00s 000ms";
+                    bestTime.style.color = "#FF0000";
                     break;
                 }
 
@@ -195,16 +205,18 @@ function statPusher() {
                 let avTimeMSCP = String(Math.floor(avTimeNumCP % 1000)).padStart(3, "0");
                 
                 ttl.textContent = options[1];
+                
                 attCount.textContent = attCP;
                 avTime.textContent = avTimeSCP + "s " + avTimeMSCP + "ms";
                 bestTime.textContent = bestTimeSCP + "s " + bestTimeMSCP + "ms";
+                
                 break;
         }
 
     }
-    closeStat.addEventListener("click", () => {
+    closeStat.onclick = function() {
         statScreenClone.remove();
-    });
+    }
 }
 
 
@@ -543,3 +555,5 @@ startButton.onclick = function() {
 screenButton.onclick = function() {
     statPusher();
 }
+
+
