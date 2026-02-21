@@ -5,6 +5,7 @@ const ITPlay = document.getElementById('ITPlay');
 const devTag = document.getElementById('devTag');
 const gamesList = document.getElementById('gamesList');
 let kp = localStorage.getItem('kp');
+let rel = false;
 
 
 function time() {
@@ -14,6 +15,7 @@ function time() {
     if (timeDiff <= 0) {
         specialSub.textContent = "Internet Tasks Available Now!";
         gamesList.appendChild(RselectIT);
+        rel = true;
         return;
     };
     let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
@@ -28,7 +30,7 @@ time();
 setInterval(time, 1000);
 
 ITPlay.onclick = function() {
-    if (kp) {
+    if (kp || rel === true) {
         window.location.href = '/internettasks/';
     } else {
         let pr;
