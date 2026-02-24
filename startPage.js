@@ -1,4 +1,4 @@
-const currentCountdownDate = new Date("Feb 28, 2026 09:20:00").getTime();
+const currentCountdownDate = new Date("Mar 5, 2026 09:40:00").getTime();
 const specialSub = document.getElementById("specialSub");
 const RselectIT = document.getElementById('RselectIT');
 const ITPlay = document.getElementById('ITPlay');
