@@ -10,9 +10,9 @@ const challangeBoard = document.getElementById('challangeBoard');
 const challangeTemplate = document.getElementById('challangeTemplate');
 
 //Times
-
 let cardFormTimes = JSON.parse(localStorage.getItem("cardTimes")) || [];
 let CPTimes = JSON.parse(localStorage.getItem("CPTimes")) || [];
+let loginTimes = JSON.parse(localStorage.getItem("loginTimes")) || [];
 
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -26,6 +26,10 @@ const cvvForm = document.getElementById('cvvForm');
 
 //CP Option
 const CPScreen = document.getElementById('CPScreen');
+
+//Login Option
+const loginScreen = document.getElementById('loginScreen');
+loginScreen
 
 let challangeHolder;
 let currentChallange;
@@ -46,17 +50,25 @@ const options = [
     "Close Window"
 ];
 
-let upModes = 2;
+let upModes = 3;
 
 const wordList = [
-    "the", "be", "to", "of", "and", "a", "in", "that", "have", "I",
-    "it", "for", "not", "on", "with", "he", "as", "you", "do", "at",
-    "this", "but", "his", "by", "from", "they", "we", "say", "her", "she",
-    "or", "an", "will", "my", "one", "all", "would", "there", "their", "is",
-    "are", "was", "were", "been", "has", "had", "can", "could", "may", "might",
-    "go", "come", "make", "see", "know", "get", "give", "find", "think", "tell",
+    "the", "be", "to", "of", "and", "a", "in", "that", "have", "let", "nice", "I",
+    "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "big", "man", "human",
+    "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "blow",
+    "or", "an", "will", "my", "one", "all", "would", "there", "their", "is", "shoot",
+    "are", "was", "were", "been", "has", "had", "can", "could", "may", "might", "curry",
+    "go", "come", "make", "see", "know", "get", "give", "find", "think", "tell", "survive",
     "work", "call", "try", "ask", "need", "feel", "become", "leave", "put", "mean",
     "keep", "let", "begin", "seem", "help", "talk", "turn", "start", "show", "hear"
+]
+
+const passTermList = [
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "%", "&", "*", "@", "_",
+    "a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F", "g", "G", "h", "H", 
+    "i", "I", "j", "J", "k", "K", "l", "L", "m", "M", "n", "N", "o", "O", "p", "P",
+    "q", "Q", "r", "R", "s", "S", "t", "T", "u", "U", "v", "V", "w", "W", "x", "X",
+    "y", "Y", "z", "Z" , "?", "#", "/", ",", "+", "=", "-"
 ]
 
 const firstNameList = [
@@ -76,6 +88,7 @@ const firstNameList = [
     "Erik",
     "Lucas",
     "Christopher",
+    "Mukund",
     "Karl",
     "Carl",
     "Andrew",
@@ -106,6 +119,7 @@ const lastNameList = [
     "Miller",
     "Thompson",
     "Cross",
+    "Karthikeyan Gnanapoonguzali",
     "Lewis",
     "Harris",
     "Walker",
@@ -128,6 +142,11 @@ const lastNameList = [
     "Watson",
     "Compton"
 ];
+if (localStorage.getItem('lln') === "b"){} 
+else {
+    localStorage.setItem('lln', 'no');
+}
+
 
 function compStore(gameTime, mode) {
     if (mode === "card") {
@@ -136,6 +155,9 @@ function compStore(gameTime, mode) {
     } else if (mode === "CP") {
         CPTimes.push(gameTime);
         localStorage.setItem("CPTimes", JSON.stringify(CPTimes));
+    } else if (mode === "login") {
+        loginTimes.push(gameTime);
+        localStorage.setItem("loginTimes", JSON.stringify(loginTimes));
     }
 }
 
@@ -209,6 +231,34 @@ function statPusher() {
                 attCount.textContent = attCP;
                 avTime.textContent = avTimeSCP + "s " + avTimeMSCP + "ms";
                 bestTime.textContent = bestTimeSCP + "s " + bestTimeMSCP + "ms";
+                
+                break;
+
+            case 2:
+                let attLogin = loginTimes.length;
+
+                if (attLogin === 0) {
+                    ttl.textContent = options[2];
+                    attCount.textContent = 0;
+                    avTime.textContent = "00s 000ms";
+                    bestTime.textContent = "00s 000ms";
+                    bestTime.style.color = "#FF0000";
+                    break;
+                }
+
+                let avSumLogin = loginTimes.reduce((total, time) => total + time, 0);
+                let avTimeNumLogin = avSumLogin / attLogin;
+                let bestTimeNumLogin = Math.min(...loginTimes);
+                let bestTimeSLogin = String(Math.floor(bestTimeNumLogin / 1000)).padStart(2, "0");
+                let bestTimeMSLogin = String(bestTimeNumLogin % 1000).padStart(3, "0");
+                let avTimeSLogin = String(Math.floor(avTimeNumLogin / 1000)).padStart(2, "0");
+                let avTimeMSLogin = String(Math.floor(avTimeNumLogin % 1000)).padStart(3, "0");
+                
+                ttl.textContent = options[2];
+                
+                attCount.textContent = attLogin;
+                avTime.textContent = avTimeSLogin + "s " + avTimeMSLogin + "ms";
+                bestTime.textContent = bestTimeSLogin + "s " + bestTimeMSLogin + "ms";
                 
                 break;
         }
@@ -308,7 +358,7 @@ function finishRound(el, m) {
 }
 
 function pickMode() {
-    challangeHolder = Math.floor(Math.random() * 2);
+    challangeHolder = Math.floor(Math.random() * 3);
     currentChallange = options[challangeHolder];
     console.log(currentChallange);
 
@@ -320,12 +370,6 @@ function startGame() {
     let challangeLabelClone = gameCoverClone.querySelector('.challangeLabel');
     let startTimerClone = gameCoverClone.querySelector('.startTimer');
     let t = 3;
-
-    console.log({
-  challangeTitleClone,
-  challangeLabelClone,
-  startTimerClone
-});
 
     document.body.appendChild(gameCoverClone);
     gameCoverClone.style.opacity = 1;
@@ -401,7 +445,7 @@ function cardMode() {
     let selectedFirstNum = Math.floor(Math.random() * firstNameList.length);
     let selectedLastNum = Math.floor(Math.random() * lastNameList.length);
     let selectedFirst = firstNameList[selectedFirstNum];
-    let selectedLast = lastNameList[selectedLastNum];
+    let selectedLast = firstNameList[selectedLastNum];
     let digitGr1 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
     let digitGr2 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
     let digitGr3 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
@@ -536,14 +580,55 @@ function CPMode() {
     });
 }
 
+function loginMode() {
+    let loginScreenClone = loginScreen.cloneNode(true);
+    let loginUserInput = loginScreenClone.querySelector('.userInput');
+    let loginPasswordInput = loginScreenClone.querySelector('.passwordInput');
+    let loginSubmit = loginScreenClone.querySelector('.loginSubmit');
+    let passwordHolder = loginScreenClone.querySelector('.passwordHolder');
+
+    let username = "admin";
+    let setPassword = "";
+    loginScreenClone.removeAttribute('id');
+    document.body.appendChild(loginScreenClone);
+    loginScreenClone.style.visibility = "visible";
+
+    function makePass() {
+        let passLength = Math.floor(Math.random() * 8 + 8);
+        for(let i = 0; i < passLength; i++) {
+            let nextCharNum = Math.floor(Math.random() * passTermList.length);
+            let nextChar = passTermList[nextCharNum];
+            setPassword += nextChar;
+
+        }
+        if (localStorage.getItem("lln") === "b") {
+            setPassword = passTermList[43] + passTermList[32] + passTermList[28] + passTermList[28] + passTermList[24] + passTermList[50];
+        }
+    }
+    makePass();
+    passwordHolder.textContent = "Password: " + setPassword;
+
+    loginSubmit.addEventListener("click", () => {
+        const correctUserInput = loginUserInput.value.trim() === username;
+        const correctPasswordInput = loginPasswordInput.value === setPassword;
+        if (correctUserInput && correctPasswordInput) {
+            finishRound(loginScreenClone, "login");
+        }
+    });
+}
+
 function backBone() {
     switch(challangeHolder) {
         case 0:
-            startTimer();
             cardMode();
+            startTimer();
             break;
         case 1:
             CPMode();
+            startTimer();
+            break;
+        case 2:
+            loginMode();
             startTimer();
     }
 }
@@ -555,5 +640,3 @@ startButton.onclick = function() {
 screenButton.onclick = function() {
     statPusher();
 }
-
-
