@@ -571,6 +571,19 @@ function CPMode() {
     pushText();
     CPTextHolderClone.textContent = displayText;
 
+    document.addEventListener("keydown", function(key) {
+        if ((key.ctrlKey || key.metaKey) && key.key.toLowerCase() === "a") {
+            key.preventDefault();
+            
+            const newRange = document.createRange();
+            newRange.selectNodeContents(CPTextHolderClone);
+
+            const newSelection = window.getSelection();
+            newSelection.removeAllRanges();
+            newSelection.addRange(newRange);
+        }
+    });
+
     CPSubmitClone.addEventListener("click", () => {
         const correctInput = CPTextBinClone.value.trim() === displayText.trim();
 
@@ -582,16 +595,25 @@ function CPMode() {
 
 function loginMode() {
     let loginScreenClone = loginScreen.cloneNode(true);
+    let loginBoxClone = loginScreenClone.querySelector('.loginBox');
     let loginUserInput = loginScreenClone.querySelector('.userInput');
     let loginPasswordInput = loginScreenClone.querySelector('.passwordInput');
     let loginSubmit = loginScreenClone.querySelector('.loginSubmit');
+    let usernameHolder = loginScreenClone.querySelector('.usernameHolder');
     let passwordHolder = loginScreenClone.querySelector('.passwordHolder');
 
     let username = "admin";
     let setPassword = "";
+    let userCode = Math.floor(Math.random()* 2);
     loginScreenClone.removeAttribute('id');
     document.body.appendChild(loginScreenClone);
     loginScreenClone.style.visibility = "visible";
+
+    if(userCode === 1) {
+        username = "admin";
+    } else {
+        username = "guest";
+    }
 
     function makePass() {
         let passLength = Math.floor(Math.random() * 8 + 8);
@@ -605,7 +627,17 @@ function loginMode() {
             setPassword = passTermList[43] + passTermList[32] + passTermList[28] + passTermList[28] + passTermList[24] + passTermList[50];
         }
     }
+
+    async function falseLogin() {
+        loginBoxClone.style.border = "solid #FF0000 5px";
+
+        await sleep(2000);
+
+        loginBoxClone.style.border = "solid #FFFFFF 5px";
+
+    }
     makePass();
+    usernameHolder.textContent = "Username: " + username;
     passwordHolder.textContent = "Password: " + setPassword;
 
     loginSubmit.addEventListener("click", () => {
@@ -613,6 +645,8 @@ function loginMode() {
         const correctPasswordInput = loginPasswordInput.value === setPassword;
         if (correctUserInput && correctPasswordInput) {
             finishRound(loginScreenClone, "login");
+        } else {
+            falseLogin();
         }
     });
 }
@@ -640,3 +674,5 @@ startButton.onclick = function() {
 screenButton.onclick = function() {
     statPusher();
 }
+
+
