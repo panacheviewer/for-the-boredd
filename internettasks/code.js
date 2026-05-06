@@ -609,12 +609,6 @@ function loginMode() {
     document.body.appendChild(loginScreenClone);
     loginScreenClone.style.visibility = "visible";
 
-    if(userCode === 1) {
-        username = "admin";
-    } else {
-        username = "guest";
-    }
-
     function makePass() {
         let passLength = Math.floor(Math.random() * 8 + 8);
         for(let i = 0; i < passLength; i++) {
