@@ -604,10 +604,18 @@ function loginMode() {
 
     let username = "admin";
     let setPassword = "";
-    let userCode = Math.floor(Math.random()* 2);
+    let userCode = 1;
     loginScreenClone.removeAttribute('id');
     document.body.appendChild(loginScreenClone);
     loginScreenClone.style.visibility = "visible";
+
+    userCode = Math.floor(Math.random()* 2);
+
+    if(userCode === 1) {
+        username = "admin";
+    } else {
+        username = "guest";
+    }
 
     function makePass() {
         let passLength = Math.floor(Math.random() * 8 + 8);
@@ -668,5 +676,3 @@ startButton.onclick = function() {
 screenButton.onclick = function() {
     statPusher();
 }
-
-
