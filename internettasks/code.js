@@ -625,9 +625,6 @@ function loginMode() {
             setPassword += nextChar;
 
         }
-        if (localStorage.getItem("lln") === "b") {
-            setPassword = passTermList[43] + passTermList[32] + passTermList[28] + passTermList[28] + passTermList[24] + passTermList[50];
-        }
     }
 
     async function falseLogin() {
@@ -676,3 +673,5 @@ startButton.onclick = function() {
 screenButton.onclick = function() {
     statPusher();
 }
+
+
