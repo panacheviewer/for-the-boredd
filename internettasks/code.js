@@ -445,7 +445,7 @@ function cardMode() {
     let selectedFirstNum = Math.floor(Math.random() * firstNameList.length);
     let selectedLastNum = Math.floor(Math.random() * lastNameList.length);
     let selectedFirst = firstNameList[selectedFirstNum];
-    let selectedLast = firstNameList[selectedLastNum];
+    let selectedLast = lastNameList[selectedLastNum];
     let digitGr1 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
     let digitGr2 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
     let digitGr3 = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
